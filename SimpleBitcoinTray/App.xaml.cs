@@ -95,6 +95,7 @@ namespace BitcoinTrayTicker
         private void cbCurrency_Loaded(object sender, RoutedEventArgs e)
         {
             List<string> data = new List<string>();
+            data.Add("CAD");
             data.Add("USD");
             data.Add("EUR");
             data.Add("GBP");
