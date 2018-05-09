@@ -25,7 +25,7 @@ namespace BitcoinTrayTicker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("EUR")]
+        [global::System.Configuration.DefaultSettingValueAttribute("CAD")]
         public string SelectedCurrency {
             get {
                 return ((string)(this["SelectedCurrency"]));
