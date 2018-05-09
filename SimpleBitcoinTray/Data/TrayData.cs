@@ -1,4 +1,4 @@
-﻿using Hardcodet.Wpf.TaskbarNotification;
+using Hardcodet.Wpf.TaskbarNotification;
 using Info.Blockchain.API.ExchangeRates;
 using System;
 using System.Collections.Generic;
@@ -22,15 +22,15 @@ namespace BitcoinTrayTicker.Data
         {
             updateTrayText(CurrencyData.SelectedCurrency);
         }
-     
+
 
         static void updateTrayText(Currency price)
         {
             TaskbarIcon trayIcon = (TaskbarIcon)Application.Current.FindResource("myTaskbarIcon");
 
-            Color myColor = Color.Green;
+            Color myColor = Color.White;
 
-            History history = CurrencyData.getSecondToLast(Properties.Settings.Default.SelectedCurrency);            
+            History history = CurrencyData.getSecondToLast(Properties.Settings.Default.SelectedCurrency);
 
             if (history != null)
             {
@@ -40,17 +40,17 @@ namespace BitcoinTrayTicker.Data
 
                 if (percentChanged > 0)
                 {
-                    myColor = Color.Green;
+                    myColor = Color.White;
                 }
                 else if (percentChanged < 0)
                 {
                     myColor = Color.Red;
-                }                
-               
+                }
+
                 if (percentChanged >= Properties.Settings.Default.NotifyPercentageValue || percentChanged <= -Properties.Settings.Default.NotifyPercentageValue)
                 {
-                    trayIcon.ShowBalloonTip(Math.Round(percentChanged, 2).ToString() + " %", "Old price: " + oldPrice.Last.ToString() + " " + oldPrice.Symbol + ", New price: " + price.Last.ToString() + " " + price.Symbol, BalloonIcon.Info);                    
-                }                              
+                    trayIcon.ShowBalloonTip(Math.Round(percentChanged, 2).ToString() + " %", "Old price: " + oldPrice.Last.ToString() + " " + oldPrice.Symbol + ", New price: " + price.Last.ToString() + " " + price.Symbol, BalloonIcon.Info);
+                }
             }
 
             Brush brush = new SolidBrush(myColor);
@@ -81,11 +81,11 @@ namespace BitcoinTrayTicker.Data
             IntPtr hIcon = bitmap.GetHicon();
             Icon icon = Icon.FromHandle(hIcon);
 
-            Application.Current.Dispatcher.Invoke(new Action(() => 
+            Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 trayIcon.Icon = icon;
                 trayIcon.ToolTipText = price.Last + " " + price.Symbol;
-            }));            
+            }));
         }
 
         public static void updateTrayText(string textTray, string textTooltip)
@@ -117,6 +117,6 @@ namespace BitcoinTrayTicker.Data
             return ((double)change / previous) * 100;
         }
 
-        
+
     }
 }
